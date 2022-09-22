@@ -1,0 +1,5 @@
+2022-09-22 20:14:41,149 [ERROR] - __main__ - foo(14) - Ups i did it again
+2022-09-22 20:16:27,224 [ERROR] - __main__ - foo(14) - Ups i did it again
+2022-09-22 20:17:44,628 [ERROR] - __main__ - foo(14) - Ups i did it again
+2022-09-22 20:18:26,808 [ERROR] - __main__ - foo(14) - Ups i did it again
+2022-09-22 20:21:07,454 [ERROR] - ex04 - foo(14) - Ups i did it again
