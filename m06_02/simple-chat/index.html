@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>WebSocket</title>
+</head>
+<body>
+    <button id="btnSend">Click Here</button>
+    <div id="result"></div>
+    <script>
+        const socket = new WebSocket("ws://localhost:8765")
+
+        socket.addEventListener('open', (e) => {
+            socket.send('Connection ready')
+        })
+
+        socket.addEventListener('message', (e) => {
+            console.log(e.data)
+        })
+
+        btnSend.addEventListener('click', (e) => {
+            console.log('Click')
+            socket.send('Click ready')
+        })
+    </script>
+</body>
+</html>
