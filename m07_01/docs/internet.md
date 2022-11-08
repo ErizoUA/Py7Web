@@ -85,7 +85,6 @@ Date: Mon, 29 Sep 2014 12:04:19 GMT
 Content-Type: text/html; charset=UTF-8
 Connection: close
 Cache-Control: no-cache,no-store,max-age=0,must-revalidate
-console.log("🚀 ~ file: internet.md ~ line 88 ~ revalidate", revalidate)
 Expires: Mon, 29 Sep 2014 12:04:19 GMT
 Last-Modified: Mon, 29 Sep 2014 12:04:19 GMT
 Content-Encoding: gzip
