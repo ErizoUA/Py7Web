@@ -4,7 +4,7 @@ from sqlalchemy.orm import joinedload
 from sqlalchemy import and_
 
 from database.db import session
-from database.models import Student, Teacher
+from database.models import Student, Teacher, TeacherStudent
 
 
 def get_students():
