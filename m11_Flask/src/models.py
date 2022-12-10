@@ -13,6 +13,7 @@ class User(db.Model):
     hash = db.Column(db.String(255), nullable=False)
     token_cookie = db.Column(db.String(255), nullable=True, default=None)
     pictures = relationship('Picture', back_populates='user')
+    # isDeleted = default False
 
     def __repr__(self):
         return f"User({self.id}, {self.username}, {self.email})"
@@ -21,6 +22,7 @@ class User(db.Model):
 class Picture(db.Model):
     __tablename__ = 'pictures'
     id = db.Column(db.Integer, primary_key=True)
+    # uuid = db.Column()
     path = db.Column(db.String(350), unique=True,  nullable=False)
     description = db.Column(db.String(300), nullable=False)
     size = db.Column(db.Integer, nullable=False)

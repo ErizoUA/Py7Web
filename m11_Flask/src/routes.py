@@ -110,7 +110,7 @@ def pictures():
     if not auth:
         return redirect(request.url)
     pictures_user = pics.get_pictures_user(session['username']['id'])
-    print(pictures_user)
+    flash('<h1>Test message!</h1>')
     return render_template('pages/pictures.html', auth=auth, pictures=pictures_user)
 
 
@@ -136,3 +136,31 @@ def pictures_upload():
             flash('Uploaded successfully!')
             return redirect(url_for('pictures_upload'))
     return render_template('pages/upload.html', auth=auth)
+
+
+@app.route('/pictures/edit/<pic_id>', methods=['GET', 'POST'], strict_slashes=False)
+def pictures_edit(pic_id):
+    auth = True if 'username' in session else False
+    if not auth:
+        return redirect(request.url)
+    user_id = session['username']['id']
+    picture = pics.get_picture_user(pic_id, user_id)
+    if request.method == 'POST':
+        description = request.form.get('description')
+        pics.update_picture(pic_id, user_id, description)
+        flash('Successfully!')
+        return redirect(url_for('pictures'))
+
+    return render_template('pages/edit.html', auth=auth, picture=picture)
+
+
+@app.route('/pictures/delete/<pic_id>', methods=['POST'], strict_slashes=False)
+def pictures_delete(pic_id):
+    auth = True if 'username' in session else False
+    if not auth:
+        return redirect(request.url)
+
+    user_id = session['username']['id']
+    pics.delete_picture_user(pic_id, user_id)
+    flash('Deleted successfully!')
+    return redirect(url_for('pictures'))

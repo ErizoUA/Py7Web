@@ -11,3 +11,11 @@ def move_user_picture(user_id, file_path: Path):
     size = file.stat().st_size
     file_name_for_db = f"/static/{user_id}/{file.name}"
     return file_name_for_db, size
+
+
+def delete_user_picture(path):
+    filename = Path(f'{BASE_DIR}/src{path}')
+    try:
+        filename.unlink()
+    except FileNotFoundError as err:
+        print(err)
