@@ -1,0 +1,32 @@
+{% extends "noteapp/base.html" %}
+
+{% block content %}
+
+<div>
+    <h3>{{user.username}}</h3>
+    <img src="{{user.profile.avatar.url}}" alt="avatar">
+</div>
+
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li {% if message.tags %} class="{{ message.tags }}" {% endif %}> {{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div style="padding: 10px">
+        <label> Change avatar:
+            {{form.avatar}}
+            <span>{{form.error.avatar}}</span>
+        </label>
+    </div>
+    <div class="grid">
+        <button type="submit">Submit</button>
+        <button type="reset" class="secondary">Reset</button>
+    </div>
+</form>
+
+{% endblock %}
