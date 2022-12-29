@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "m14-02"
+version = "0.1.0"
+description = ""
+authors = ["Yuriy Kuchma <krabatua@gmail.com>"]
+readme = "README.md"
+packages = [{include = "m14_02"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+scrapy = "^2.7.1"
+selenium = "^4.7.2"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
