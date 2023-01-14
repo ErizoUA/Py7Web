@@ -1,13 +1,21 @@
 from typing import Optional
 
 from fastapi import FastAPI, Query, Path, Depends, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 from sqlalchemy.orm import Session
 
 from db.connect import get_db
-from src.routers import notes
+from src.routers import notes, auth, users
 
 app = FastAPI()
+
+origins = [
+    'http://127.0.0.1:5500'
+]
+
+app.add_middleware(CORSMiddleware, allow_origins=origins, allow_methods=['*'], allow_headers=['*'],
+                   allow_credentials=True)
 
 
 @app.get("/api/healthchecker")
@@ -22,6 +30,8 @@ async def healthchecker(db: Session = Depends(get_db)):
         raise HTTPException(status_code=500, detail='Error connection to database')
 
 
+app.include_router(auth.router)
+app.include_router(users.router)
 app.include_router(notes.router, prefix="/api")
 
 
