@@ -1,8 +1,5 @@
-from typing import Optional
-
-from fastapi import FastAPI, Query, Path, Depends, HTTPException
+from fastapi import FastAPI, Depends, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-from pydantic import BaseModel, Field
 from sqlalchemy.orm import Session
 
 from db.connect import get_db
@@ -11,7 +8,7 @@ from src.routers import notes, auth, users
 app = FastAPI()
 
 origins = [
-    'http://127.0.0.1:5500'
+    '*',
 ]
 
 app.add_middleware(CORSMiddleware, allow_origins=origins, allow_methods=['*'], allow_headers=['*'],

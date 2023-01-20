@@ -28,3 +28,10 @@ class UsersRepository:
         db.commit()
         db.refresh(new_user)
         return new_user
+
+    @staticmethod
+    async def update_avatar(id_, url: str, db: Session):
+        user = db.query(User).filter(User.id == id_).first()
+        if user:
+            user.avatar = url
+        return user
