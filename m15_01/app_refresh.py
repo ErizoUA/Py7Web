@@ -23,13 +23,10 @@ def get_config():
 
 @app.exception_handler(AuthJWTException)
 def authjwt_exception_handler(request: Request, exc: AuthJWTException):
-    return JSONResponse(
-        status_code=exc.status_code,
-        content={"detail": exc.message}
-    )
+    return JSONResponse(status_code=exc.status_code, content={"detail": exc.message})
 
 
-@app.post('/login')
+@app.post("/login")
 def login(user: User, Authorize: AuthJWT = Depends()):
     if user.username != "tests" or user.password != "tests":
         raise HTTPException(status_code=401, detail="Bad username or password")
@@ -41,7 +38,7 @@ def login(user: User, Authorize: AuthJWT = Depends()):
     return {"access_token": access_token, "refresh_token": refresh_token}
 
 
-@app.post('/refresh')
+@app.post("/refresh")
 def refresh(Authorize: AuthJWT = Depends()):
     """
     The jwt_refresh_token_required() function insures a valid refresh
@@ -56,7 +53,7 @@ def refresh(Authorize: AuthJWT = Depends()):
     return {"access_token": new_access_token}
 
 
-@app.get('/protected')
+@app.get("/protected")
 def protected(Authorize: AuthJWT = Depends()):
     Authorize.jwt_required()
 

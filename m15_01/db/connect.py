@@ -1,8 +1,17 @@
+import os
+
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
-SQLALCHEMY_DATABASE_URL = "postgresql+psycopg2://postgres:567234@localhost:5432/fast_db"
+from src.service_config import app_config
+
+# if os.environ.get("ENV_APP") == 'STAGE':
+#     SQLALCHEMY_DATABASE_URL = app_config['TEST']['postgres']['url']
+# else:
+#     SQLALCHEMY_DATABASE_URL = app_config['DEV']['postgres']['url']
+
+SQLALCHEMY_DATABASE_URL = app_config['postgres']['url']
 
 engine = create_engine(SQLALCHEMY_DATABASE_URL)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
